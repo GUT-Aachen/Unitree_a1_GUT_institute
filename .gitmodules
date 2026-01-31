@@ -1,0 +1,24 @@
+[submodule "src/ros_unitree/unitree_ros/gazebo_worlds"]
+	path = src/ros_unitree/unitree_ros/gazebo_worlds
+	url = https://github.com/leonhartyao/gazebo_models_worlds_collection
+[submodule "src/kindr_ros"]
+	path = src/kindr_ros
+	url = https://github.com/ANYbotics/kindr_ros.git
+[submodule "src/kindr"]
+	path = src/kindr
+	url = https://github.com/ANYbotics/kindr.git
+[submodule "src/grid_map"]
+	path = src/grid_map
+	url = https://github.com/ANYbotics/grid_map
+[submodule "src/any_node"]
+	path = src/any_node
+	url = https://github.com/ANYbotics/any_node
+[submodule "src/message_logger"]
+	path = src/message_logger
+	url = https://github.com/ANYbotics/message_logger
+[submodule "src/elevation-mapping-realsense-d435i"]
+	path = src/elevation-mapping-realsense-d435i
+	url = https://github.com/SobhanGhayedzadeh/elevation-mapping-realsense-d435i
+[submodule "src/point_cloud_io"]
+	path = src/point_cloud_io
+	url = https://github.com/anybotics/point_cloud_io
