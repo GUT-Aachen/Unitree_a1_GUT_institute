@@ -1,6 +1,3 @@
-[submodule "src/ros_unitree/unitree_ros/gazebo_worlds"]
-	path = src/ros_unitree/unitree_ros/gazebo_worlds
-	url = https://github.com/leonhartyao/gazebo_models_worlds_collection
 [submodule "src/kindr_ros"]
 	path = src/kindr_ros
 	url = https://github.com/ANYbotics/kindr_ros.git
@@ -22,3 +19,6 @@
 [submodule "src/kindr"]
 	path = src/kindr
 	url = https://github.com/ANYbotics/kindr.git
+[submodule "src/ros_unitree/unitree_ros/gazebo_worlds/gazebo"]
+	path = src/ros_unitree/unitree_ros/gazebo_worlds/gazebo
+	url = https://github.com/leonhartyao/gazebo_models_worlds_collection
