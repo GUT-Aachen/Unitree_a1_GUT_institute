@@ -1,10 +1,13 @@
 /**********************************************************************
  Copyright (c) 2020-2023, Unitree Robotics.Co.Ltd. All rights reserved.
 ***********************************************************************/
+
+// maintain Abhirup Das 2025-26
 #ifdef COMPILE_WITH_REAL_ROBOT
 
 #include "interface/IOSDK.h"
 #include "interface/WirelessHandle.h"
+#include "interface/KeyBoard.h"
 #include <stdio.h>
 
 #ifdef ROBOT_TYPE_Go1
@@ -27,14 +30,21 @@ IOSDK::IOSDK():_safe(UNITREE_LEGGED_SDK::LeggedType::Aliengo), _udp(UNITREE_LEGG
 IOSDK::IOSDK():_safe(UNITREE_LEGGED_SDK::LeggedType::Aliengo), _udp(UNITREE_LEGGED_SDK::LOWLEVEL){
     std::cout << "The control interface for real robot" << std::endl;
     _udp.InitCmdData(_lowCmd);
-    cmdPanel = new WirelessHandle();
+    // cmdPanel = new WirelessHandle();
+    cmdPanel = new KeyBoard();
 
 #ifdef COMPILE_WITH_MOVE_BASE
-    _pub = _nh.advertise<sensor_msgs::JointState>("/realRobot/joint_states", 20);
+    _pub = _nh.advertise<sensor_msgs::JointState>("/joint_states", 20);
     _joint_state.name.resize(12);
     _joint_state.position.resize(12);
     _joint_state.velocity.resize(12);
     _joint_state.effort.resize(12);
+    _imu_pub = _nh.advertise<sensor_msgs::Imu>("/trunk_imu", 10);
+    std::string foot_names[4] = {"FR", "FL", "RR", "RL"};
+    for(int i=0; i<4; ++i) {
+        _foot_force_pub[i] = _nh.advertise<geometry_msgs::WrenchStamped>("/foot_force/" + foot_names[i], 10);
+        _foot_force_msgs[i].header.frame_id = foot_names[i] + "_foot";
+    }
 #endif  // COMPILE_WITH_MOVE_BASE
 }
 #endif
@@ -88,6 +98,40 @@ void IOSDK::sendRecv(const LowlevelCmd *cmd, LowlevelState *state){
     }
 
     _pub.publish(_joint_state);
+
+    _imu_msg.header.stamp = ros::Time::now();
+    _imu_msg.header.frame_id = "imu_link";
+    // Orientation (Quaternions)
+    _imu_msg.orientation.w = state->imu.quaternion[0];
+    _imu_msg.orientation.x = state->imu.quaternion[1];
+    _imu_msg.orientation.y = state->imu.quaternion[2];
+    _imu_msg.orientation.z = state->imu.quaternion[3];
+
+    // Angular Velocity
+    _imu_msg.angular_velocity.x = state->imu.gyroscope[0];
+    _imu_msg.angular_velocity.y = state->imu.gyroscope[1];
+    _imu_msg.angular_velocity.z = state->imu.gyroscope[2];
+
+    // Linear Acceleration
+    _imu_msg.linear_acceleration.x = state->imu.accelerometer[0];
+    _imu_msg.linear_acceleration.y = state->imu.accelerometer[1];
+    _imu_msg.linear_acceleration.z = state->imu.accelerometer[2];
+
+    _imu_pub.publish(_imu_msg);
+
+    ros::Time current_time = ros::Time::now();
+    for(int i=0; i<4; ++i) {
+        _foot_force_msgs[i].header.stamp = current_time;
+        
+        _foot_force_msgs[i].wrench.force.z = _lowState.footForce[i]; //may need to calibrate dont no
+        
+        _foot_force_msgs[i].wrench.force.x = 0; // usually 0
+        _foot_force_msgs[i].wrench.force.y = 0; //
+
+        _foot_force_pub[i].publish(_foot_force_msgs[i]);
+    }
+
+
 #endif  // COMPILE_WITH_MOVE_BASE
 }
 

@@ -58,7 +58,7 @@ Where the `rname` means robot name, which can be `laikago`, `aliengo`, `a1` or `
 
 For starting the controller, open a new terminal, then run the following command:
 ```
-rosrun unitree_guide junior_ctrl
+rosrun unitree_guide base_ctrl
 ```
 After starting the controller, the robot will lie on the ground of the simulator, then press the '2' key on the keyboard to switch the robot's finite state machine (FSM) from Passive(initial state) to FixedStand, then press the '4' key to switch the FSM from FixedStand to Trotting
 
@@ -102,7 +102,7 @@ roslaunch pcl2scan pcl2scan.launch rname:=a1
 
 Start the robot controller:
 ```
-rosrun unitree_guide junior_ctrl
+rosrun unitree_guide base_ctrl
 ```
 
 
@@ -151,7 +151,7 @@ roslaunch unitree_gazebo robot_simulation.launch rname:=a1 wname:=office_small r
 
 Start the robot controller:
 ```
-rosrun unitree_guide junior_ctrl
+rosrun unitree_guide base_ctrl
 ```
 and press the keys '2' and '5' to activate the MoveBase mode.
 
@@ -180,7 +180,7 @@ rosrun tf static_transform_publisher 0 0 0 0 0 0 1 map odom 100
 ![A1 navigation](./src/ros_unitree/doc/unitree_a1_navigation.gif)
 
 # Note
-If you are having problems with the movements of the robot and the node junior_ctrl logs the following error:
+If you are having problems with the movements of the robot and the node base_ctrl logs the following error:
 ```
 [ERROR] Function setProcessScheduler failed.
 ```

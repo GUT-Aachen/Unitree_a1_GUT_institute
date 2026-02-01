@@ -11,6 +11,8 @@
     #include <ros/ros.h>
     #include <ros/time.h>
     #include <sensor_msgs/JointState.h>
+    #include <sensor_msgs/Imu.h>
+    #include <geometry_msgs/WrenchStamped.h>
 #endif  // COMPILE_WITH_MOVE_BASE
 
 
@@ -29,7 +31,11 @@ UNITREE_LEGGED_SDK::LowState _lowState;
 #ifdef COMPILE_WITH_MOVE_BASE
     ros::NodeHandle _nh;
     ros::Publisher _pub;
+    ros::Publisher _imu_pub;
+    ros::Publisher _foot_force_pub[4];
     sensor_msgs::JointState _joint_state;
+    sensor_msgs::Imu _imu_msg;
+    geometry_msgs::WrenchStamped _foot_force_msgs[4]; //need to mention cuz of number of forces
 #endif  // COMPILE_WITH_MOVE_BASE
 };
 
