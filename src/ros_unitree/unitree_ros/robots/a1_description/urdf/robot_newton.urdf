@@ -373,63 +373,11 @@
     </collision>
     <inertial>
       <!-- The following are not reliable values, and should not be used for modeling -->
-      <mass value="0.564"/>
+      <mass value="0.264"/>
       <origin xyz="0 0 0"/>
       <inertia ixx="0.003881243" ixy="0.0" ixz="0.0" iyy="0.000498940" iyz="0.0" izz="0.003879257"/>
     </inertial>
   </link>
-  <!-- camera depth joints and links -->
-  <joint name="camera_depth_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0 0 0"/>
-    <parent link="camera_link"/>
-    <child link="camera_depth_frame"/>
-  </joint>
-  <link name="camera_depth_frame"/>
-  <joint name="camera_depth_optical_joint" type="fixed">
-    <origin rpy="-1.5707963267948966 0 -1.5707963267948966" xyz="0 0 0"/>
-    <parent link="camera_depth_frame"/>
-    <child link="camera_depth_optical_frame"/>
-  </joint>
-  <link name="camera_depth_optical_frame"/>
-  <!-- camera left IR joints and links -->
-  <joint name="camera_left_ir_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0 0.0 0"/>
-    <parent link="camera_depth_frame"/>
-    <child link="camera_left_ir_frame"/>
-  </joint>
-  <link name="camera_left_ir_frame"/>
-  <joint name="camera_left_ir_optical_joint" type="fixed">
-    <origin rpy="-1.5707963267948966 0 -1.5707963267948966" xyz="0 0 0"/>
-    <parent link="camera_left_ir_frame"/>
-    <child link="camera_left_ir_optical_frame"/>
-  </joint>
-  <link name="camera_left_ir_optical_frame"/>
-  <!-- camera right IR joints and links -->
-  <joint name="camera_right_ir_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0 -0.05 0"/>
-    <parent link="camera_depth_frame"/>
-    <child link="camera_right_ir_frame"/>
-  </joint>
-  <link name="camera_right_ir_frame"/>
-  <joint name="camera_right_ir_optical_joint" type="fixed">
-    <origin rpy="-1.5707963267948966 0 -1.5707963267948966" xyz="0 0 0"/>
-    <parent link="camera_right_ir_frame"/>
-    <child link="camera_right_ir_optical_frame"/>
-  </joint>
-  <link name="camera_right_ir_optical_frame"/>
-  <!-- camera color joints and links -->
-  <joint name="camera_color_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0 0.015 0"/>
-    <parent link="camera_depth_frame"/>
-    <child link="camera_color_frame"/>
-  </joint>
-  <link name="camera_color_frame"/>
-  <joint name="camera_color_optical_joint" type="fixed">
-    <origin rpy="-1.5707963267948966 0 -1.5707963267948966" xyz="0 0 0"/>
-    <parent link="camera_color_frame"/>
-    <child link="camera_color_optical_frame"/>
-  </joint>
-  <link name="camera_color_optical_frame"/>
   <gazebo reference="camera_link">
     <self_collide>0</self_collide>
     <enable_wind>0</enable_wind>
