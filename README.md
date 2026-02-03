@@ -19,9 +19,9 @@ sudo apt-get install liblcm-dev
 sudo apt-get install ros-noetic-controller-interface ros-noetic-gazebo-ros-pkgs ros-noetic-gazebo-ros-control ros-noetic-joint-state-controller ros-noetic-effort-controllers ros-noetic-joint-trajectory-controller ros-noetic-amcl ros-noetic-move-base ros-noetic-slam-gmapping ros-noetic-hector-slam ros-noetic-map-server ros-noetic-global-planner ros-noetic-dwa-local-planner ros-noetic-rtabmap-ros
 ```
 
-Clone this repository in the `src` folder of your catkin workspace:
+Clone this repository in your catkin workspace:
 ```
-
+git clone https://github.com/Sgt-Hashtag/Unitree-A1-Real-Ros
 ```
 
 And open the file `unitree_ros/unitree_gazebo/worlds/stairs.world`. At the end of the file (line 112):
