@@ -39,7 +39,7 @@ catkin_make
 ```
 
 If you face a dependency problem, you can just run `catkin_make` again.
-Here the CMakeLists for unitree_guide is set to Real robot by default but you can change it Simulation depending upon what is needed. But you cannot use Both, since the runtime latches to either the Gazebo or Real robot ros topics for Rviz interface.
+Here the CMakeLists for unitree_guide is set to Real robot by default but you can change it Simulation depending upon what is needed. But you cannot use Both, since the build latches to either the Gazebo or Real robot ros topics for Rviz interface.
 
 # Robots Description
 The description of robots Go1, A1, Aliengo, and Laikago. Each package includes mesh, urdf and xacro files of robot. Take Go1 for example, you can check the model in Rviz by:
