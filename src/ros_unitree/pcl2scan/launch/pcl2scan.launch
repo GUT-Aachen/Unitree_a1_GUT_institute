@@ -1,5 +1,6 @@
 <launch>
     <arg name="rname" default="/"/>
+    <arg name="use_sim" default="false" />
     <arg if="$(eval arg('rname') == '/')"  name="frame_prefix" value="" />
     <arg unless="$(eval arg('rname') == '/')" name="frame_prefix" value="$(arg rname)/" />
     <!-- Run pointcloud_to_laserscan node -->
@@ -7,8 +8,9 @@
         type="pointcloud_to_laserscan_node"
         name="pointcloud_to_laserscan"
         output="screen">
-
-        <remap from="cloud_in" to="/camera/depth/points" />
+        
+        <remap if="$(arg use_sim)" from="cloud_in" to="/camera/depth/points" />
+        <remap unless="$(arg use_sim)" from="cloud_in" to="/camera/depth/color/points" />
         <remap from="scan" to="/$(arg rname)_gazebo/scan"/>
 
         <rosparam>

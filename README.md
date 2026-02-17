@@ -94,6 +94,17 @@ roslaunch unitree_gazebo robot_simulation.launch rname:=a1 wname:=office_small
 
 ![World loaded in Gazebo](./src/ros_unitree/doc/unitree_a1_gazebo_world.png)
 
+# Start Realsense in Real robot
+
+ssh -X unitree@192.168.123.12
+
+set ROS_MASTER_IP=http://192.168.123.XXX:11311
+set ROS_IP=192.168.123.12
+
+roslaunch realsense2_camera rs_camera.launch
+
+
+
 # Mapping
 
 Start the simulation in Gazebo:
@@ -102,7 +113,7 @@ roslaunch unitree_gazebo robot_simulation.launch rname:=a1 wname:=office_small r
 ```
 Start the pcl2lasescan node:
 ```
-roslaunch pcl2scan pcl2scan.launch rname:=a1
+roslaunch pcl2scan pcl2scan.launch rname:=a1 use_sim:=true
 ```
 
 Start the robot controller:
