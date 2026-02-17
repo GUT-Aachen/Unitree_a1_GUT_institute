@@ -23,7 +23,11 @@ Clone this repository in your catkin workspace:
 ```
 git clone https://github.com/Sgt-Hashtag/Unitree-A1-Real-Ros
 ```
-
+Update the submodules:
+```
+git submodule init
+git submodule update --recursive
+```
 And open the file `unitree_ros/unitree_gazebo/worlds/stairs.world`. At the end of the file (line 112):
 ```
 <include>
@@ -194,5 +198,8 @@ Replace `<username>` with your username.
 Save, close the file and reboot the system to apply the changes.
 
 ---
+## fixes
+```
 #include <cstdint> Add this at the top of: grid_map/grid_map_core/include/grid_map_core/TypeDefs.hpp
 #include <array>  Add this at the top of: grid_map_sdf/include/grid_map_sdf/SignedDistanceField.hpp
+```
