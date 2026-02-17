@@ -147,6 +147,11 @@ rosrun map_server map_saver -f ~/catkin_ws/src/ros_unitree/unitree_guide/unitree
 ##OCTO MAP
 start mapping with configured octomap package
 ```
+sudo apt-get update
+sudo apt-get install ros-noetic-octomap-ros ros-noetic-octomap-msgs ros-noetic-octomap-server
+```
+
+```
 roslaunch mapping3d_realsense mapping3d.launch  use_sim:=true
 ```
 ![a1 octomap in Rviz](./src/ros_unitree/doc/unitree_a1_octomap.png)
