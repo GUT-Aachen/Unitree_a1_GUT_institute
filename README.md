@@ -95,11 +95,10 @@ roslaunch unitree_gazebo robot_simulation.launch rname:=a1 wname:=office_small
 ![World loaded in Gazebo](./src/ros_unitree/doc/unitree_a1_gazebo_world.png)
 
 # Start Realsense in Real robot
+export ROS_MASTER_IP=http://192.168.123.161:11311
+export ROS_IP=192.168.123.114
 
 ssh -X unitree@192.168.123.12
-
-set ROS_MASTER_IP=http://192.168.123.XXX:11311
-set ROS_IP=192.168.123.12
 
 roslaunch realsense2_camera rs_camera.launch
 
