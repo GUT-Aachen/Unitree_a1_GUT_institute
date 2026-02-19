@@ -100,8 +100,7 @@ export ROS_IP=192.168.123.114
 
 ssh -X unitree@192.168.123.12
 
-roslaunch realsense2_camera rs_camera.launch
-
+roslaunch realsense2_camera rs_camera.launch depth_width:=424 depth_height:=240 depth_fps:=30 color_width:=424 color_height:=240 color_fps:=30 enable_pointcloud:=true align_depth:=true filters:=decimation decimation_filter_magnitude:=2 image_compression:=true
 
 
 # Mapping
