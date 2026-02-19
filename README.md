@@ -95,13 +95,24 @@ roslaunch unitree_gazebo robot_simulation.launch rname:=a1 wname:=office_small
 ![World loaded in Gazebo](./src/ros_unitree/doc/unitree_a1_gazebo_world.png)
 
 # Start Realsense in Real robot
+On your pc:
 export ROS_MASTER_IP=http://192.168.123.161:11311
 export ROS_IP=192.168.123.114
 
+Then for Intel PC over ssh:
+ssh -X unitree@192.168.123.161
+```
+roslaunch unitree_real real.launch
+```
+2nd Terminal
+```
+rosrun unitree_guide base_ctrl
+```
+Then for Nvidia PC over ssh:
 ssh -X unitree@192.168.123.12
-
+```
 roslaunch realsense2_camera rs_camera.launch depth_width:=424 depth_height:=240 depth_fps:=30 color_width:=424 color_height:=240 color_fps:=30 enable_pointcloud:=true align_depth:=true filters:=decimation decimation_filter_magnitude:=2 image_compression:=true
-
+```
 
 # Mapping
 
