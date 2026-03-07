@@ -373,9 +373,9 @@
     </collision>
     <inertial>
       <!-- The following are not reliable values, and should not be used for modeling -->
-      <mass value="0.264"/>
+      <mass value="0.200"/>
       <origin xyz="0 0 0"/>
-      <inertia ixx="0.003881243" ixy="0.0" ixz="0.0" iyy="0.000498940" iyz="0.0" izz="0.003879257"/>
+      <inertia ixx="2.083e-5" ixy="0.0" ixz="0.0" iyy="1.452e-4" iyz="0.0" izz="1.452e-4" />
     </inertial>
   </link>
   <gazebo reference="camera_link">

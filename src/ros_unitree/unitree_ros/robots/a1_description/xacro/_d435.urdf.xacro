@@ -66,8 +66,7 @@
                 <!-- The following are not reliable values, and should not be used for modeling -->
                 <mass value="0.200" />
                 <origin xyz="0 0 0" />
-                <inertia ixx="2.083e-5" ixy="0.0" ixz="0.0" iyy="1.452e-4"" iyz="0.0"
-                    izz="1.452e-4" />
+                <inertia ixx="2.083e-5" ixy="0.0" ixz="0.0" iyy="1.452e-4" iyz="0.0" izz="1.452e-4" />
             </inertial>
         </link>
 
