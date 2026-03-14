@@ -19,7 +19,7 @@
             <!-- <arg name="frame_prefix" value="$(arg frame_prefix)"/> -->
             <arg name="base_frame" value="base"/>
             <arg name="odom_frame" value="odom"/>
-            <arg name="scan" value="$(arg rname)_gazebo/scan"/>
+            <arg name="scan" value="scan"/>
         </include>
 
         <!-- Calls navigation stack packages -->

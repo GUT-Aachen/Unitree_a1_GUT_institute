@@ -15,15 +15,15 @@
             <param name="frame_id" value="map" />
         </node>
 
-        <!-- Uncomment if you want to convert PointCloud2 data from the three depth cameras to LaserScan -->
-        <!-- <include file="$(find unitree_move_base)/launch/pointCloud2LaserScan.launch"/>  -->
+        <!-- Uncomment if you want to convert PointCloud2 data from the depth camera to LaserScan -->
+        <!-- <include file="$(find pcl2scan)/launch/pcl2scan.launch"/>  -->
 
         <!-- AMCL used for localization -->
         <include file="$(find unitree_navigation)/launch/navigation/amcl.launch">
             <!-- <arg name="frame_prefix" value="$(arg frame_prefix)"/> -->
             <arg name="base_frame" value="$(arg base_frame)"/>
             <arg name="odom_frame" value="$(arg odom_frame)"/>
-            <arg name="scan" value="$(arg rname)_gazebo/scan"/>
+            <arg name="scan" value="scan"/>
         </include>
         
         <!-- Calls navigation stack packages -->

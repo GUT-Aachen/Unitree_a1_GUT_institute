@@ -10,6 +10,8 @@
     <xacro:include filename="$(find a1_description)/xacro/stairs.xacro" />
     <xacro:include filename="$(find a1_description)/xacro/gazebo.xacro" />
     <xacro:include filename="$(find a1_description)/xacro/_d435.urdf.xacro" />
+    <xacro:include filename="$(find a1_description)/xacro/hokuyo_urg04lx.urdf.xacro" />
+    
     <!-- <xacro:include filename="$(find a1_gazebo)/launch/stairs.urdf.xacro"/> -->
 
     <!-- <xacro:stairs stairs="15" xpos="0" ypos="0" zpos="0" /> -->
@@ -129,6 +131,10 @@
     <xacro:sensor_d435 name="camera" parent="trunk">
         <origin xyz="0.2695 0.0 0.0266" rpy="0 0 0" />
     </xacro:sensor_d435>
+    
+    <xacro:hokuyo_urg04lx_mount prefix="hokuyo" topic="scan" parent_link="trunk">
+        <origin xyz="0.18 0.0 0.06" rpy="0 0 0" />
+    </xacro:hokuyo_urg04lx_mount>
 
     <xacro:leg name="FR" mirror="-1" mirror_dae="False" front_hind="1" front_hind_dae="True">
         <origin rpy="0 0 0" xyz="${leg_offset_x} ${-leg_offset_y} 0" />
