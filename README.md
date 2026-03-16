@@ -16,7 +16,7 @@ For ROS Noetic:
 ```
 sudo apt-get update
 sudo apt-get install liblcm-dev
-sudo apt-get install ros-noetic-controller-interface ros-noetic-gazebo-ros-pkgs ros-noetic-gazebo-ros-control ros-noetic-joint-state-controller ros-noetic-effort-controllers ros-noetic-joint-trajectory-controller ros-noetic-amcl ros-noetic-move-base ros-noetic-slam-gmapping ros-noetic-hector-slam ros-noetic-map-server ros-noetic-global-planner ros-noetic-dwa-local-planner ros-noetic-rtabmap-ros ros-noetic-realsense2-camera ros-noetic-realsense2-description
+sudo apt-get install ros-noetic-controller-interface ros-noetic-gazebo-ros-pkgs ros-noetic-gazebo-ros-control ros-noetic-joint-state-controller ros-noetic-effort-controllers ros-noetic-joint-trajectory-controller ros-noetic-amcl ros-noetic-move-base ros-noetic-slam-gmapping ros-noetic-hector-slam ros-noetic-map-server ros-noetic-global-planner ros-noetic-dwa-local-planner ros-noetic-rtabmap-ros ros-noetic-realsense2-camera ros-noetic-realsense2-description ros-noetic-urg-node
 ```
 
 Clone this repository in your catkin workspace:
@@ -46,7 +46,7 @@ If you face a dependency problem, you can just run `catkin_make` again.
 Here the CMakeLists for unitree_guide is set to Real robot by default but you can change it Simulation depending upon what is needed. But you cannot use Both, since the build latches to either the Gazebo or Real robot ros topics for Rviz interface.
 
 # Robots Description
-The description of robots Go1, A1, Aliengo, and Laikago. Each package includes mesh, urdf and xacro files of robot. Take Go1 for example, you can check the model in Rviz by:
+The description of robots Go1, A1, Aliengo, and Laikago. Each package includes mesh, urdf and xacro files of robot. Take A1 for example, you can check the model in Rviz by:
 ```
 roslaunch a1_description a1_rviz.launch
 ```
@@ -113,6 +113,16 @@ ssh -X unitree@192.168.123.12
 ```
 roslaunch realsense2_camera rs_camera.launch depth_width:=424 depth_height:=240 depth_fps:=30 color_width:=424 color_height:=240 color_fps:=30 enable_pointcloud:=true align_depth:=true filters:=decimation decimation_filter_magnitude:=2 image_compression:=true
 ```
+##Need to only do this once##
+Make sure your robot has the correct permissions for Lidar if used and is available at the fixed path on your system. Add the following rule to the udev service:
+Paste these lines to /etc/udev/rules.d/lidar.rules file:
+```
+KERNEL=="ttyACM*", ATTRS{idVendor}=="15d1", MODE="0666", GROUP="dialout", SYMLINK+="lidar", ENV{ID_MM_DEVICE_IGNORE}="1"
+```
+and reload udev rules:
+```
+sudo udevadm control --reload-rules && sudo udevadm trigger
+```
 
 # Mapping
 
@@ -120,10 +130,12 @@ Start the simulation in Gazebo:
 ```
 roslaunch unitree_gazebo robot_simulation.launch rname:=a1 wname:=office_small rviz:=false
 ```
+
 Start the pcl2lasescan node:
 ```
 roslaunch pcl2scan pcl2scan.launch rname:=a1 use_sim:=true
 ```
+We use the Hokuyo Lidar too here; Can optionally use wh
 
 Start the robot controller:
 ```
