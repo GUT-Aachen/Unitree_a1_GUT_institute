@@ -53,15 +53,15 @@
       </gazebo>
     </xacro:macro>
 
-    <xacro:hokuyo_urg04lx frame="${prefix}_laser" topic="${topic}" />
+    <xacro:hokuyo_urg04lx frame="laser" topic="${topic}" />
 
-    <joint name="${prefix}_laser_mount_joint" type="fixed">
+    <joint name="${prefix}_laser_base_joint" type="fixed">
       <xacro:insert_block name="origin" />
       <parent link="${parent_link}" />
-      <child link="${prefix}_laser_mount" />
+      <child link="$laser_base" />
     </joint>
 
-    <link name="${prefix}_laser_mount">
+    <link name="laser_base">
       <visual>
         <origin xyz="0 0 0" rpy="1.57 0 0" />
         <geometry>
@@ -79,11 +79,11 @@
 
     <joint name="${prefix}_laser_joint" type="fixed">
       <origin xyz="0 0 0.064" rpy="0 0 0" />
-      <parent link="${prefix}_laser_mount" />
-      <child link="${prefix}_laser" />
+      <parent link="laser_base" />
+      <child link="laser" />
     </joint>
 
-    <gazebo reference="${prefix}_laser_mount">
+    <gazebo reference="laser_base">
       <material>Gazebo/DarkGrey</material>
     </gazebo>
 
