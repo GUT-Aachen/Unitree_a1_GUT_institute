@@ -11,7 +11,7 @@
     <xacro:include filename="$(find a1_description)/xacro/gazebo.xacro" />
     <xacro:include filename="$(find a1_description)/xacro/_d435.urdf.xacro" />
     <xacro:include filename="$(find a1_description)/xacro/hokuyo_urg04lx.urdf.xacro" />
-    
+
     <!-- <xacro:include filename="$(find a1_gazebo)/launch/stairs.urdf.xacro"/> -->
 
     <!-- <xacro:stairs stairs="15" xpos="0" ypos="0" zpos="0" /> -->
@@ -131,9 +131,32 @@
     <xacro:sensor_d435 name="camera" parent="trunk">
         <origin xyz="0.2695 0.0 0.0266" rpy="0 0 0" />
     </xacro:sensor_d435>
-    
+    <joint name="laser_base_joint" type="fixed">
+        <parent link="trunk" />
+        <child link="laser_base" />
+        <origin rpy="0 0 3.14" xyz="0.24 0.0425 0" />
+    </joint>
+
+    <link name="laser_base">
+        <visual>
+            <origin xyz="0 0 0" rpy="1.57 0 1.57" />
+            <geometry>
+                <mesh filename="package://a1_description/meshes/support.STL"
+                    scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey" />
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://a1_description/meshes/support.STL"
+                    scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+
     <xacro:hokuyo_urg04lx_mount prefix="hokuyo" topic="scan" parent_link="trunk">
-        <origin xyz="0.18 0.0 0.06" rpy="0 0 0" />
+        <origin xyz="0.184 0.0 0.062" rpy="0 0 0" />
     </xacro:hokuyo_urg04lx_mount>
 
     <xacro:leg name="FR" mirror="-1" mirror_dae="False" front_hind="1" front_hind_dae="True">
