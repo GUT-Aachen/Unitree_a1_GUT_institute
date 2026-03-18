@@ -240,5 +240,3 @@ You can also send ros commands directly to z1 robot:
 ```
 rosrun z1_controller unitree_move_z1
 ```
-
-Huge inspiration from: https://github.com/macc-n/ros_unitree
