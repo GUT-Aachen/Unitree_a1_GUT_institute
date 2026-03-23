@@ -96,7 +96,7 @@ roslaunch unitree_gazebo robot_simulation.launch rname:=a1 wname:=office_small
 
 # Start Realsense in Real robot
 On your pc:
-export ROS_MASTER_IP=http://192.168.123.161:11311
+export ROS_MASTER_URI=http://192.168.123.161:11311
 export ROS_IP=192.168.123.114
 
 Then for Intel PC over ssh:
