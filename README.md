@@ -122,9 +122,10 @@ Launch Lidar
 ```
 roslaunch urg_node urg_lidar.launch
 ```
-### Set chrony to sync with your PC's IP
+###Set chrony to sync with your PC's IP for real robot###
 
 ##Need to only do this once##
+
 Make sure your robot has the correct permissions for Lidar if used and is available at the fixed path on your system. Add the following rule to the udev service:
 Paste these lines to /etc/udev/rules.d/lidar.rules file:
 ```
@@ -237,7 +238,8 @@ In Rviz, first set the initial position of the robot with the "2D Pose Estimate"
 rosrun tf static_transform_publisher 0 0 0 0 0 0 1 map odom 100
 ![A1 navigation](./src/ros_unitree/doc/unitree_a1_navigation.gif)
 
-
+Real Robot Navigation
+![A1 real_navigation](./src/ros_unitree/doc/unitree_a1_real_nav.gif)
 
 # Note
 If you are having problems with the movements of the robot and the node base_ctrl logs the following error:
