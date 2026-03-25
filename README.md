@@ -135,6 +135,37 @@ and reload udev rules:
 ```
 sudo udevadm control --reload-rules && sudo udevadm trigger
 ```
+##Time-sync Chrnoy setting: 
+on your pc：
+```
+sudo timedatectl set-ntp true
+sudo apt install chrony
+sudo nano /etc/chrony/chrony.conf
+```
+Put the robot ip adress into the config:
+```
+pool ntp.ubuntu.com iburst
+
+allow 192.168.123.0/24
+allow 192.168.161.0/24
+
+local stratum 10
+```
+Restart Chrony:
+```
+sudo systemctl restart chrony
+```
+On both robot pc add your pc ip address configure the chrony.conf as before, add your own ip adress into the config:
+```
+server YOUR_IP_ADDRESS iburst prefer
+```
+Restart chrony and check the time source and accuracy:
+```
+sudo systemctl restart chrony
+chronyc sources -v
+chronyc tracking
+```
+
 
 # Mapping
 
