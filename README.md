@@ -97,22 +97,33 @@ roslaunch unitree_gazebo robot_simulation.launch rname:=a1 wname:=office_small
 # Start Realsense in Real robot
 On your pc:
 export ROS_MASTER_URI=http://192.168.123.161:11311
-export ROS_IP=192.168.123.114
+export ROS_IP=192.168.123.XXX
 
 Then for Intel PC over ssh:
 ssh -X unitree@192.168.123.161
 ```
 roslaunch unitree_real real.launch
 ```
+set chrony to sync with your pc IP
 2nd Terminal
 ```
 rosrun unitree_guide base_ctrl
 ```
 Then for Nvidia PC over ssh:
 ssh -X unitree@192.168.123.12
+
+Launch Camera
+
 ```
 roslaunch realsense2_camera rs_camera.launch depth_width:=424 depth_height:=240 depth_fps:=30 color_width:=424 color_height:=240 color_fps:=30 enable_pointcloud:=true align_depth:=true filters:=decimation decimation_filter_magnitude:=2 image_compression:=true
 ```
+Launch Lidar
+
+```
+roslaunch urg_node urg_lidar.launch
+```
+### Set chrony to sync with your PC's IP
+
 ##Need to only do this once##
 Make sure your robot has the correct permissions for Lidar if used and is available at the fixed path on your system. Add the following rule to the udev service:
 Paste these lines to /etc/udev/rules.d/lidar.rules file:
@@ -135,7 +146,7 @@ Start the pcl2lasescan node:
 ```
 roslaunch pcl2scan pcl2scan.launch rname:=a1 use_sim:=true
 ```
-We use the Hokuyo Lidar too here; Can optionally use wh
+We use the Hokuyo Lidar too here; For Real robot use a combination of both;
 
 Start the robot controller:
 ```
@@ -199,7 +210,12 @@ and press the keys '2' and '5' to activate the MoveBase mode.
 
 Start the pcl2lasescan node:
 ```
-roslaunch pcl2scan pcl2scan.launch rname:=a1
+roslaunch pcl2scan pcl2scan.launch rname:=a1 sim:=true
+```
+
+For Real Robot Launch Lidar here:
+```
+roslaunch urg_node urg_lidar.launch
 ```
 
 Start the navigation stack:
@@ -220,6 +236,8 @@ In Rviz, first set the initial position of the robot with the "2D Pose Estimate"
 "For static transform"
 rosrun tf static_transform_publisher 0 0 0 0 0 0 1 map odom 100
 ![A1 navigation](./src/ros_unitree/doc/unitree_a1_navigation.gif)
+
+
 
 # Note
 If you are having problems with the movements of the robot and the node base_ctrl logs the following error:
