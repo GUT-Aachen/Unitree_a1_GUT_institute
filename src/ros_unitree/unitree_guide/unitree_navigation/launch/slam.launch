@@ -10,7 +10,7 @@
         <include file="$(find unitree_navigation)/launch/slam/hector_mapping.launch">
             <arg name="base_frame" value="base"/>
             <arg name="odom_frame" value="odom"/>
-            <arg name="scan_topic" value="$(arg rname)_gazebo/scan"/>
+            <arg name="scan_topic" value="scan"/>
         </include>    
     </group>
 
