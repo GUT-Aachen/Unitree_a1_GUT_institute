@@ -218,6 +218,7 @@ sudo apt-get install ros-noetic-octomap-ros ros-noetic-octomap-msgs ros-noetic-o
 ```
 roslaunch mapping3d_realsense mapping3d.launch  use_sim:=true
 ```
+![a1 octomap in Rviz](./src/ros_unitree/doc/unitree_a1_octo_mapless_move_base.gif)
 ![a1 octomap in Rviz](./src/ros_unitree/doc/unitree_a1_octomap.png)
 
 save octomap created
