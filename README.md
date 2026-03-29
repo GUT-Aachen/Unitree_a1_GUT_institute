@@ -268,11 +268,13 @@ rosrun octomap_server octomap_server_node src/ros_unitree/mapping3d_realsense/ma
 ```
 Use MarkerArray from Rviz
 
-In Rviz, first set the initial position of the robot with the "2D Pose Estimate" button. Next, set a navigation goal with the "2D Nav Goal" button.
+Use RtabMap to create rgbd_odometry from rgbd camera:
 
+rosrun rtabmap_odom rgbd_odometry rgb/image:=/camera/color/image_raw depth/image:=/camera/depth/image_raw rgb/camera_info:=/camera/color/camera_info _frame_id:=base _odom_frame_id:=rgbd_odom approx_sync:=true _approx_sync_max_interval:=0.05 publish_tf:=false
 
-"For static transform"
-rosrun tf static_transform_publisher 0 0 0 0 0 0 1 map odom 100
+rosparam set /rgbd_odometry/Vis/MinInliers 8
+rosparam set /rgbd_odometry/Vis/CorGuessWinSize 40
+
 ![A1 navigation](./src/ros_unitree/doc/unitree_a1_navigation.gif)
 
 Real Robot Navigation
