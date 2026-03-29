@@ -50,7 +50,7 @@ int main(int argc, char **argv)
     std::cout << std::fixed << std::setprecision(3);
 
 #ifdef RUN_ROS
-    ros::init(argc, argv, "unitree_gazebo_servo");
+    ros::init(argc, argv, "unitree_servo");
 #endif // RUN_ROS
 
     IOInterface *ioInter;
