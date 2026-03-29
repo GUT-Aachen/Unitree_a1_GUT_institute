@@ -11,6 +11,7 @@
         
         <remap if="$(arg use_sim)" from="cloud_in" to="/camera/depth/points" />
         <remap unless="$(arg use_sim)" from="cloud_in" to="/camera/depth/color/points" />
+        <remap from="scan" to="stereo_scan" />
 
         <rosparam>
             target_frame: camera_link
